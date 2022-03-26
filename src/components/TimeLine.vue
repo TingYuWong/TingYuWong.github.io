@@ -100,7 +100,10 @@ import { mapState } from 'vuex'
         },
         methods: {
             drawCircle() {
-                if(!this.detailObj[this.chosenTim]) return
+                if(!this.detailObj[this.chosenTim]) {
+                    d3.selectAll('.focus-circle').remove()
+                    return
+                }
                 let h = {
                     1: this.height - 175,
                     2: this.height - 75,
