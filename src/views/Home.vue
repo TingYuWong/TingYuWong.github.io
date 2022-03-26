@@ -5,6 +5,7 @@
     <AboutMe />
     <TimeLine />
     <Learning />
+    <Contact />
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import LandingPage from '@/components/LandingPage.vue'
 import AboutMe from '@/components/AboutMe.vue'
 import TimeLine from '@/components/TimeLine.vue'
 import Learning from '@/components/Learning.vue'
+import Contact from '@/components/Contact.vue'
 
 export default {
   name: 'Home',
@@ -25,6 +27,7 @@ export default {
     TimeLine,
     Message,
     Learning,
+    Contact,
   },
   computed: {
     ...mapState(['dayMode']),
