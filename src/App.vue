@@ -52,4 +52,11 @@ background-image: linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%); */
   /* background-color: #716A5C; */
   background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
 }
+
+
+@media screen and (max-width: 530px) {
+  .title  {
+    font-size: 50px;
+  }
+}
 </style>
