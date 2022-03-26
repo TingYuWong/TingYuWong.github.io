@@ -4,9 +4,7 @@
     <LandingPage />
     <AboutMe />
     <TimeLine />
-    <!-- <Education />
-    <Experience />
-    <Difficulties /> -->
+    <Learning />
   </div>
 </template>
 
@@ -17,9 +15,7 @@ import Message from '@/components/Message.vue'
 import LandingPage from '@/components/LandingPage.vue'
 import AboutMe from '@/components/AboutMe.vue'
 import TimeLine from '@/components/TimeLine.vue'
-// import Experience from '@/components/Experience.vue'
-// import Education from '@/components/Education.vue'
-// import Difficulties from '@/components/Difficulties.vue'
+import Learning from '@/components/Learning.vue'
 
 export default {
   name: 'Home',
@@ -28,9 +24,7 @@ export default {
     AboutMe,
     TimeLine,
     Message,
-    // Experience,
-    // Education,
-    // Difficulties,
+    Learning,
   },
   computed: {
     ...mapState(['dayMode']),
