@@ -4,6 +4,7 @@
             <div ref="circle" class="circle"></div>
         </div>
     </div>
+    <div class="hint">Use Chrome for better experience</div>
 </template>
 
 <script>
@@ -89,5 +90,12 @@ export default {
 .toggle.night .circle {
     background-color: rgb(219, 218, 196);
     box-shadow: 0px 0px 3px rgb(168, 168, 159);
+}
+
+.hint {
+    color: rgb(65, 126, 126);
+    text-align: right;
+    font-size: 14px;
+    margin-top: 3px;
 }
 </style>
