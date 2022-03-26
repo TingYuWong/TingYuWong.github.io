@@ -1,5 +1,6 @@
 <template>
   <div class="home" :class="(dayMode) ? 'dayBg' : 'nightBg' " >
+    <Message />
     <LandingPage />
     <AboutMe />
     <TimeLine />
@@ -12,6 +13,7 @@
 <script>
 import { mapState } from 'vuex'
 // @ is an alias to /src
+import Message from '@/components/Message.vue'
 import LandingPage from '@/components/LandingPage.vue'
 import AboutMe from '@/components/AboutMe.vue'
 import TimeLine from '@/components/TimeLine.vue'
@@ -25,6 +27,7 @@ export default {
     LandingPage,
     AboutMe,
     TimeLine,
+    Message,
     // Experience,
     // Education,
     // Difficulties,

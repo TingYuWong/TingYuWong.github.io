@@ -4,7 +4,6 @@
             <div ref="circle" class="circle"></div>
         </div>
     </div>
-    <div class="hint">Use Chrome for better experience</div>
 </template>
 
 <script>
@@ -97,5 +96,6 @@ export default {
     text-align: right;
     font-size: 14px;
     margin-top: 3px;
+    word-break: normal;
 }
 </style>
