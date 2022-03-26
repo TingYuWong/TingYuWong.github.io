@@ -9,7 +9,7 @@
                 </div>
            </div>
            <p>Thanks to these courses, I improve a lot. I really appreciate their effort!</p>
-           <p>Personally, I pay for yearly fee on Vue Mastery, Vue school, and Fronted Masters. They are totally worth it. I take courses almost every day because I value my websites and I wanna make them better. Also, the feeling of accomplishment just makes me addicted to it.</p>
+           <p>Personally, I pay for yearly fee on Vue Mastery, Vue school, and Frontend Masters. They are totally worth it. I take courses almost every day because I value my websites and I wanna make them better. Also, the feeling of accomplishment just makes me addicted to it.</p>
        </div>
     </div>
 </template>
