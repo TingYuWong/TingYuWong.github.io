@@ -1,0 +1,42 @@
+<template>
+  <div class="home" :class="(dayMode) ? 'dayBg' : 'nightBg' " >
+    <LandingPage />
+    <AboutMe />
+    <TimeLine />
+    <!-- <Education />
+    <Experience />
+    <Difficulties /> -->
+  </div>
+</template>
+
+<script>
+import { mapState } from 'vuex'
+// @ is an alias to /src
+import LandingPage from '@/components/LandingPage.vue'
+import AboutMe from '@/components/AboutMe.vue'
+import TimeLine from '@/components/TimeLine.vue'
+// import Experience from '@/components/Experience.vue'
+// import Education from '@/components/Education.vue'
+// import Difficulties from '@/components/Difficulties.vue'
+
+export default {
+  name: 'Home',
+  components: {
+    LandingPage,
+    AboutMe,
+    TimeLine,
+    // Experience,
+    // Education,
+    // Difficulties,
+  },
+  computed: {
+    ...mapState(['dayMode']),
+  },
+}
+</script>
+
+<style scoped>
+.home {
+  transition: all 3s;
+}
+</style>
