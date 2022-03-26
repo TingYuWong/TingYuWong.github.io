@@ -89,7 +89,6 @@ import { mapState } from 'vuex'
                 return d3
                 .axisBottom(this.zoomX)
                 .tickFormat((tim) => {
-                    console.log(tim)
                     return d3.timeFormat('%Y/%B')(tim)
                 })
                 .ticks(d3.timeMonth.every(1))
@@ -120,12 +119,39 @@ import { mapState } from 'vuex'
                 .attr('filter', `drop-shadow(0px 0px 20px ${color})`)
             },
             panX(e) {
+                // let t = this.constrainZoom(e.transform)
                 let t = d3.zoomIdentity.translate(e.transform.x, 0).scale(1); // 只平移x軸不作縮放
+                if(this.setInitialDomain(t)) return
                 let newX = t.rescaleX(this.x)
                 this.zoomX = newX
                 this.updateAxis()
                 this.drawTimeline()
                 this.drawCircle()
+            },
+            setInitialDomain(t) {
+                let d1 = d3.timeFormat('%Y/%B')(this.x.domain()[0])
+                let d2 = d3.timeFormat('%Y/%B')(this.zoomX.domain()[1])
+                let svg = d3.select('.time-svg')
+                if(t.x > 0 && new Date(d1) < new Date(2020,9)) {
+                    svg.call(
+                        this.zoom.transform,
+                        d3.zoomIdentity
+                        .translate(0, 0)
+                        .scale(1)
+                    );
+                    return true
+                }
+                if(t.x < 0 && new Date(d2) > new Date(2022,7)) {
+                    svg.call(
+                        this.zoom.transform,
+                        d3.zoomIdentity
+                        .translate(0, 0)
+                        .scale(1)
+                    );
+                    return true
+                }
+                return false
+            
             },
             reAssignWidth() {
                 this.width = this.$refs.timebar.clientWidth
