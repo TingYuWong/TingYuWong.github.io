@@ -44,8 +44,8 @@ import { mapState } from 'vuex'
                     '2021/December': { text: "Study and Fix memory leak", typ: 1 },
                     '2022/January': { text: "Customize video player through D3.js", typ: 2 },
                     '2022/February': { text: "Customize video player through D3.js", typ: 2 },
-                    '2022/March': { text: "Study and Optimize web performance", typ: 1 },
-                    '2022/April': { text: "Study and Optimize web performance", typ: 1 },
+                    '2022/March': { text: "Study web performance and Optimize the website from 64 to 95 points on lighthouse tab", typ: 1 },
+                    '2022/April': { text: "Study web performance and Optimize the website from 64 to 95 points on lighthouse tab", typ: 1 },
                 },
             }
         },
