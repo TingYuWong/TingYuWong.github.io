@@ -11,44 +11,44 @@ import { mapState } from 'vuex'
 
 export default {
     name: 'Toggle',
+    data() {
+        return {
+            animeConfig: {
+                Day: { translateX: 0, toggleColor: '#4158D0'},
+                Night: { translateX: -64, toggleColor: '#BFE8FF'},
+            },
+            easing: 'spring(1, 80, 15, 5)',
+        }
+    },
     computed: {
         ...mapState(['dayMode'])
     },
     methods: {
         changeMode() {
-            this.triggerAnimation()
+            console.log('TINA animation!!')
+            this.startAnimation()
             this.$emit('changeMode')
         },
-        triggerAnimation() {
-            if(this.dayMode) { this.toDay() } else { this.toNight() }
-        },
-        toNight() {
+        circleTransform(targets, translateX) {
             this.$anime({
-                targets: this.$refs.circle,
-                translateX: -64,
-                easing: 'spring(1, 80, 15, 5)',
+                targets,
+                translateX,
+                easing: this.easing,
             })
+        },
+        toggleColorChange(targets, color) {
             this.$anime({
-                targets: this.$refs.toggle,
-                backgroundColor: '#BFE8FF',
-                borderColor: '#BFE8FF',
-                easing: 'spring(1, 80, 15, 5)',
+                targets,
+                backgroundColor: color,
+                borderColor: color,
+                easing: this.easing,
                 delay: 100,
             });
         },
-        toDay() {
-            this.$anime({
-                targets: this.$refs.circle,
-                translateX: 0,
-                easing: 'spring(1, 80, 15, 5)',
-            })
-            this.$anime({
-                targets: this.$refs.toggle,
-                backgroundColor: '#4158D0',
-                borderColor: '#4158D0',
-                easing: 'spring(1, 80, 15, 5)',
-                delay: 100,
-            })
+        startAnimation() {
+            let mode = (this.dayMode) ? 'Day' : 'Night'
+            this.circleTransform(this.$refs.circle, this.animeConfig[mode].translateX)
+            this.toggleColorChange(this.$refs.toggle, this.animeConfig[mode].toggleColor)
         },
     },
 }

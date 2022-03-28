@@ -24,33 +24,23 @@ export default {
     },
     data() {
         return {
-            toDayTimeline: null,
-            toNightTimeline: null,
+            timeline: null,
         }
     },
     mounted() {
-        this.drawNightText()
+        this.drawText()
     },
     computed: {
         ...mapState(['dayMode'])
     },
     watch: {
         dayMode() {
-            if(this.dayMode) {
-                this.drawDayText()
-            } else {
-                this.drawNightText()
-            }
+            this.drawText()
         },
     },
     methods: {
-        drawDayText() {
-            if(this.toNightTimeline) { 
-                this.toNightTimeline.restart()
-                this.toNightTimeline.pause()
-            }
-
-            this.toDayTimeline = this.$anime.timeline({
+        timelineAnimate() {
+            this.timeline = this.$anime.timeline({
                 easing: 'easeInOutCubic',
                 duration: 1200,
                 delay: function(el, i) { return i * 250 },
@@ -58,64 +48,31 @@ export default {
                 loop: true
             })
 
-            this.toDayTimeline
+            this.timeline
             .add({
                 targets: '.T path',
                 strokeDashoffset: [this.$anime.setDashoffset, 0],
-                // fill: this.purple,
             })
             .add({
                 targets: '.I path',
                 strokeDashoffset: [this.$anime.setDashoffset, 0],
-                // fill: this.purple,
             })
             .add({
                 targets: '.N path',
                 strokeDashoffset: [this.$anime.setDashoffset, 0],
-                // fill: this.purple,
             })
             .add({
                 targets: '.A path',
                 strokeDashoffset: [this.$anime.setDashoffset, 0],
-                // fill: this.purple,
             })
         },
-        drawNightText() {
-            if(this.toDayTimeline) { 
-                this.toDayTimeline.restart()
-                this.toDayTimeline.pause()
+        drawText() {
+            if(this.timeline) { 
+                this.timeline.restart()
+                this.timeline.pause()
             }
 
-            this.toNightTimeline = this.$anime.timeline({
-                easing: 'easeInOutCubic',
-                duration: 1200,
-                delay: function(el, i) { return i * 250 },
-                direction: 'alternate',
-                loop: true
-            })
-
-            this.toNightTimeline
-            .add({
-                targets: '.T path',
-                strokeDashoffset: [this.$anime.setDashoffset, 0],
-                // fill: (this.dayMode) ? 'rgba(115, 54, 252, 1)' : 'rgba(149, 217, 218, 0.2)',
-                // fill: this.green,
-            })
-            .add({
-                targets: '.I path',
-                strokeDashoffset: [this.$anime.setDashoffset, 0],
-                // fill: this.green,
-            })
-            .add({
-                targets: '.N path',
-                strokeDashoffset: [this.$anime.setDashoffset, 0],
-                // fill: this.green,
-            })
-            .add({
-                targets: '.A path',
-                strokeDashoffset: [this.$anime.setDashoffset, 0],
-                // fill: this.green,
-            })
+            this.timelineAnimate()
         },
     },
 }

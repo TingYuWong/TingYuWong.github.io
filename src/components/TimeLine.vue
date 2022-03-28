@@ -58,9 +58,7 @@ import { mapState } from 'vuex'
         mounted() {
             window.addEventListener('resize', this.reAssignWidth)
             this.zoom = d3.zoom().on('zoom', this.panX)
-            d3.select('.time-svg').call(this.zoom)
-            // .on('wheel.zoom', null)
-            .on('dblclick.zoom', null)
+            d3.select('.time-svg').call(this.zoom).on('dblclick.zoom', null)
             this.width = this.$refs.timebar.clientWidth
         },
         watch: {
@@ -119,39 +117,34 @@ import { mapState } from 'vuex'
                 .attr('filter', `drop-shadow(0px 0px 20px ${color})`)
             },
             panX(e) {
-                // let t = this.constrainZoom(e.transform)
                 let t = d3.zoomIdentity.translate(e.transform.x, 0).scale(1); // 只平移x軸不作縮放
-                if(this.setInitialDomain(t)) return
+                if(this.constrainZoom(t)) return
                 let newX = t.rescaleX(this.x)
                 this.zoomX = newX
                 this.updateAxis()
                 this.drawTimeline()
                 this.drawCircle()
             },
-            setInitialDomain(t) {
+            constrainZoom(t) {
                 let d1 = d3.timeFormat('%Y/%B')(this.x.domain()[0])
                 let d2 = d3.timeFormat('%Y/%B')(this.zoomX.domain()[1])
-                let svg = d3.select('.time-svg')
                 if(t.x > 0 && new Date(d1) < new Date(2020,9)) {
-                    svg.call(
-                        this.zoom.transform,
-                        d3.zoomIdentity
-                        .translate(0, 0)
-                        .scale(1)
-                    );
-                    return true
+                    this.setInitialDomain()
                 }
                 if(t.x < 0 && new Date(d2) > new Date(2022,7)) {
-                    svg.call(
-                        this.zoom.transform,
-                        d3.zoomIdentity
-                        .translate(0, 0)
-                        .scale(1)
-                    );
+                    this.setInitialDomain()
                     return true
                 }
                 return false
-            
+            },
+            setInitialDomain() {
+                let svg = d3.select('.time-svg')
+                svg.call(
+                    this.zoom.transform,
+                    d3.zoomIdentity
+                    .translate(0, 0)
+                    .scale(1)
+                );
             },
             reAssignWidth() {
                 this.width = this.$refs.timebar.clientWidth
@@ -162,8 +155,6 @@ import { mapState } from 'vuex'
             },
             drawAxis() {
                 d3.select('.timeaxis')
-                // .transition()
-                // .duration(500)
                 .classed('night', !this.dayMode)
                 .attr('transform', 'translate(0,' + this.axisTopMargin + ')')
                 .call(this.xAxis)
@@ -216,8 +207,6 @@ import { mapState } from 'vuex'
                 line_L.call(line_S);
                 line_L = null;
                 line_S = null;
-
-
             },
         },
     }

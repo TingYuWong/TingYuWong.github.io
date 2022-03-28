@@ -29,11 +29,14 @@ export default {
     },
     data() {
         return {
-            toBlack: true,
             toDayTimeline: null,
             toNightTimeline: null,
             tna_Anime: null,
             i_Anime: null,
+            animeConfig: {
+                Day: { initialColor: '#fff', tinaColor: '#003A2B'},
+                Night: { initialColor: '#003A2B', tinaColor: '#fff'},
+            },
         }
     },
     computed: {
@@ -44,41 +47,36 @@ export default {
     },
     methods: {
         triggerAnimation() {
-            if(this.dayMode) {
-                if(this.toNightTimeline) {
-                    this.toNightTimeline.restart()
-                    this.toNightTimeline.pause()
-                    this.pauseAnimation()
-                }
-                this.toDay() 
-            } else {  
-                if(this.toDayTimeline) {
-                    this.toDayTimeline.restart()
-                    this.toDayTimeline.pause()
-                    this.pauseAnimation()
-                }
-                this.toNight()
-            }
+            let timeline = (this.dayMode) ? this.toNightTimeline : this.toDayTimeline
+            let mode = (this.dayMode) ? 'Day' : 'Night'
+            if(timeline) { this.pauseAnimation(timeline) }
+            this.startAnimation(mode)
         },
-        pauseAnimation() {
+        pauseAnimation(timeline) {
+            timeline.restart()
+            timeline.pause()
             this.tna_Anime.restart()
             this.i_Anime.restart()
             this.tna_Anime.pause()
             this.i_Anime.pause()
         },
+        startAnimation(typ) {
+            this.setInitialColor(this.animeConfig[typ].initialColor)
+            this[`to${typ}Timeline`] = this.timelineAnimate()
+            this.changeTINAcolor(this.animeConfig[typ].tinaColor)
+            this[`to${typ}Timeline`].finished.then(() => {
+                this.tna_Anime.play()
+                this.i_Anime.play()
+            })
+        },
         changeMode() {
             this.$store.commit('updateDayMode')
             this.triggerAnimation()
         },
-        toNight() {
-            this.$refs.nam.style.color = '#003A2B'
-            this.$refs.rect.style.backgroundColor = '#003A2B'
+        timelineAnimate() {
             // spring => 震動幅度 ; 彈跳的軟硬程度 ; 減震 ;速度(會影響震動幅度)
-            // Create a timeline with default parameters
-            this.toNightTimeline = this.$anime.timeline({});
-
-            // Add children
-            this.toNightTimeline
+            let timeline = this.$anime.timeline({});
+            timeline
             .add({
                 targets: this.$refs.circle,
                 keyframes: [
@@ -106,80 +104,27 @@ export default {
                 easing: 'spring(1, 100, 50, 0)',
                 duration: 900,
             })
-
-            this.tna_Anime = this.$anime({
-                targets: this.$refs.nam,
-                color: '#fff',
-                easing: 'spring(1, 0, 80, 20)',
-                autoplay: false,
-            })
-
-            this.i_Anime = this.$anime({
-                targets: this.$refs.rect,
-                backgroundColor: '#fff',
-                easing: 'spring(1, 0, 80, 20)',
-                autoplay: false,
-            })
-
-            this.toNightTimeline.finished.then(() => {
-                this.tna_Anime.play()
-                this.i_Anime.play()
-            })
-            
+            return timeline
         },
-        toDay() {
-            this.$refs.nam.style.color = '#ffffff'
-            this.$refs.rect.style.backgroundColor = '#ffffff'
-            // Create a timeline with default parameters
-            this.toDayTimeline = this.$anime.timeline({});
-
-            // Add children
-            this.toDayTimeline
-            .add({
-                targets: this.$refs.circle,
-                keyframes: [
-                    {translateY: -5},
-                    {translateY: 40},
-                ],
-                easing: 'spring(1, 80, 15, 5)',
-                duration: 1000,
-            })
-            .add({
-                targets: this.$refs.circle,
-                keyframes: [
-                    {translateY: 5},
-                    {translateY: 40},
-                ],
-                easing: 'spring(1, 80, 15, 5)',
-                duration: 800,
-            })
-            .add({
-                targets: this.$refs.circle,
-                keyframes: [
-                    {translateY: 15},
-                    {translateY: 40},
-                ],
-                easing: 'spring(1, 100, 50, 0)',
-                duration: 900,
-            })
+        setInitialColor(color) {
+            this.$refs.nam.style.color = color
+            this.$refs.rect.style.backgroundColor = color
+        },
+        changeTINAcolor(color) {
+            let easing = 'spring(1, 0, 80, 20)'
 
             this.tna_Anime = this.$anime({
                 targets: this.$refs.nam,
-                color: '#003A2B',
-                easing: 'spring(1, 0, 80, 20)',
+                color: color,
+                easing,
                 autoplay: false,
             })
 
             this.i_Anime = this.$anime({
                 targets: this.$refs.rect,
-                backgroundColor: '#003A2B',
-                easing: 'spring(1, 0, 80, 20)',
+                backgroundColor: color,
+                easing,
                 autoplay: false,
-            })
-
-            this.toDayTimeline.finished.then(() => {
-                this.tna_Anime.play()
-                this.i_Anime.play()
             })
         },
     },

@@ -3,11 +3,7 @@
        <div class="title" :class="{ night: !dayMode }">About Me</div>
        <div class="content" :class="{ night: !dayMode }">
            <div class="left">
-                <p>I work on liberating from limitations and reaching full potentials with might and main.</p>
-                <p>My aim is to find or create an environment where team members could inspire one another and soar up to the sky together.</p>
-                <p>Learning new skills and growing with others give me a real thrill.</p>
-                <p>I have faith in my learning ability and gain recognition from my supervisors several times for my rapid growth in a short time.</p>
-                <p>And these are what make me ONE OF A KIND.</p>
+                <p v-for="(intro, index) in introArr" :key="index">{{ intro }}</p>
            </div>
            <div class="right">
                <Name />
@@ -22,6 +18,17 @@ import Name from './AboutMe/Name.vue'
 
 export default {
     name: 'AboutMe',
+    data() {
+        return {
+            introArr: [
+                "I work on liberating from limitations and reaching full potentials with might and main.",
+                "My aim is to find or create an environment where team members could inspire one another and soar up to the sky together.",
+                "Learning new skills and growing with others give me a real thrill.",
+                "I have faith in my learning ability and gain recognition from my supervisors several times for my rapid growth in a short time.",
+                "And these are what make me ONE OF A KIND.",
+            ],
+        }
+    },
     components: {
         Name,
     },
@@ -54,11 +61,9 @@ export default {
 }
 
 .left, .right {
-    /* background-color: #fff; */
     width: 100%;
     box-sizing: border-box;
     margin-bottom: 30px;
-    /* padding-right: 20px; */
 }
 
 .right {

@@ -2,12 +2,7 @@
     <div class="wrap">
         <img src="@/assets/image/logo.png"/>
         <div class="hint-wrap">
-            <div class="hint">Using Chrome for better experience if you will.</div>
-            <div class="hint">Cuz D3 zoom would break in Safari.</div>
-            <div class="hint">And I'm still working on solving this problem.</div>
-            <div class="hint">Feel free to contact me if you find anything I need to fix</div>
-            <div class="hint">or are willing to share how to fix with me!</div>
-            <div class="hint">Here's my email: sandy20615@gmail.com! Hope you enjoy:D</div>
+            <div class="hint" v-for="(msg, index) in msgArr" :key="index">{{ msg }}</div>
         </div>
     </div>
 </template>
@@ -15,6 +10,18 @@
 <script>
 export default {
     name: 'Message',
+    data() {
+        return {
+            msgArr: [
+                "Using Chrome for better experience if you will.",
+                "Cuz D3 zoom would break in Safari.",
+                "And I'm still working on solving this problem.",
+                "Feel free to contact me if you find anything I need to fix",
+                "or are willing to share how to fix with me!",
+                "Here's my email: sandy20615@gmail.com! Hope you enjoy:D",
+            ],
+        }
+    },
 }
 </script>
 
