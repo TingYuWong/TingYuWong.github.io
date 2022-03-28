@@ -25,7 +25,6 @@ export default {
     },
     methods: {
         changeMode() {
-            console.log('TINA animation!!')
             this.startAnimation()
             this.$emit('changeMode')
         },
