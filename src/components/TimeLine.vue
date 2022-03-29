@@ -94,6 +94,12 @@ import { mapState } from 'vuex'
             chosenTim() {
                 return d3.timeFormat('%Y/%B')(this.zoomX.invert(this.width / 2))
             },
+            newDateTim() {
+                let time = this.zoomX.invert(this.width / 2)
+                let m = new Date(time).getMonth()
+                let y = new Date(time).getFullYear()
+                return new Date(y, m)
+            },
         },
         methods: {
             drawCircle() {
@@ -110,7 +116,7 @@ import { mapState } from 'vuex'
                 d3.select('.timeline')
                 .append('circle')
                 .attr('class', 'focus-circle')
-                .attr('cx', this.zoomX(new Date(this.chosenTim)))
+                .attr('cx', this.zoomX(this.newDateTim))
                 .attr('cy', h[this.detailObj[this.chosenTim].typ])
                 .attr('r', 20)
                 .attr('fill', color)
