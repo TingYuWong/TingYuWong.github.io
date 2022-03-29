@@ -140,9 +140,6 @@ import { mapState } from 'vuex'
             constrainZoom(t) {
                 let d1 = this.countDomainTim(this.x, 0)
                 let d2 = this.countDomainTim(this.zoomX, 1)
-
-                // let d1 = d3.timeFormat('%Y/%B')(this.x.domain()[0])
-                // let d2 = d3.timeFormat('%Y/%B')(this.zoomX.domain()[1])
                 if(t.x > 0 && new Date(d1) < new Date(2020,9)) {
                     this.setInitialDomain()
                 }
