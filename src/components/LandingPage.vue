@@ -154,14 +154,12 @@ export default {
 }
 
 .nam-amine {
-    /* background-color: rgb(0, 81, 255); */
     text-align: left;
     margin-top: 20px;
     margin-bottom: 20px;
     letter-spacing: 5px;
     font: bold 230px Lato;
     position: relative;
-    /* color: #1C1C1C; */
     color: rgb(0, 160, 120);
 }
 

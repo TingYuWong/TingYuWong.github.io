@@ -90,19 +90,15 @@ export default {
     font-weight: bold;
     animation-duration: 1000ms;
     animation-name: shake;
-    /* animation-iteration-count: infinite; */
     -webkit-animation-duration: 1000ms;
     -webkit-animation-name: shake;
-    /* -webkit-animation-iteration-count: infinite; */
 }
 .content.night .card:hover {
     box-shadow: 0px 0px 50px rgb(98, 31, 255);
     animation-duration: 1000ms;
     animation-name: shake;
-    /* animation-iteration-count: infinite; */
     -webkit-animation-duration: 1000ms;
     -webkit-animation-name: shake;
-    /* -webkit-animation-iteration-count: infinite; */
 }
 
 .content.night > .card {

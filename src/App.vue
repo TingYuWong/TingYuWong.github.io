@@ -19,9 +19,6 @@ html, body {
   padding: 0;
   scroll-behavior: smooth;
   overflow-x: hidden;
-  /* background-color: #f7ede2; */
-  /* background-color: #FAACA8;
-background-image: linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%); */
 }
 
 .title {
@@ -40,12 +37,10 @@ background-image: linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%); */
 }
 
 .dayBg {
-  /* background-color: #F1E9DB; */
   background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
 }
 
 .nightBg {
-  /* background-color: #716A5C; */
   background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
 }
 

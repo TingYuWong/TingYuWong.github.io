@@ -29,7 +29,6 @@ export default {
     background-color: rgba(255, 255, 255, 0.582);
     display: flex;
     justify-content: center;
-    /* background-color: rgb(209, 209, 209); */
 }
 
 img {
