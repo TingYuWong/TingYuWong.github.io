@@ -13,9 +13,6 @@ export default {
     data() {
         return {
             msgArr: [
-                "Using Chrome for better experience if you will.",
-                "Cuz D3 zoom would break in Safari.",
-                "And I'm still working on solving this problem.",
                 "Feel free to contact me if you find anything I need to fix",
                 "or are willing to share how to fix with me!",
                 "Here's my email: sandy20615@gmail.com! Hope you enjoy:D",
@@ -32,7 +29,7 @@ export default {
     background-color: rgba(255, 255, 255, 0.582);
     display: flex;
     justify-content: center;
-    /* background-color: rgb(209, 209, 209); */
+    align-items: center;
 }
 
 img {
