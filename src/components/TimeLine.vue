@@ -45,7 +45,7 @@ import { mapState } from 'vuex'
                     '2022/January': { text: "Customize video player through D3.js", typ: 2 },
                     '2022/February': { text: "Customize video player through D3.js", typ: 2 },
                     '2022/March': { text: "Study web performance and Optimize the website from 64 to 95 points on lighthouse tab", typ: 1 },
-                    '2022/April': { text: "Study web performance and Optimize the website from 64 to 95 points on lighthouse tab", typ: 1 },
+                    '2022/April': { text: "Learn how to make a Vue utility plugin", typ: 1 },
                 },
             }
         },
